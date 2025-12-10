@@ -10,12 +10,11 @@
         <div style="color: red; background-color: #ffebee; padding: 10px; margin-bottom: 20px; border-radius: 3px;">
             <?= session()->getFlashdata('error') ?>
         </div>
-        <?php endif; ?>
-        <div class="container">
+    <?php endif; ?>
 
-
-            <h2>회원가입</h2>
-        <form method="POST" action="/auth/storeRegister" style="max-width: 500px;">
+    <div class="container">
+        <h2>회원가입</h2>
+        <?= form_open('auth/storeRegister', ['style' => 'max-width: 500px;']); ?>
         <?= csrf_field() ?>
     
         <div style="margin-bottom: 15px;">
@@ -41,12 +40,11 @@
         <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer;">
             회원가입
         </button>
-    </form>
+        <?= form_close(); ?>
 
-    <p style="text-align: center; margin-top: 20px;">
-        이미 계정이 있으신가요? <a href="/auth/login">로그인</a>
-    </p>
-        </div>
-
+        <p style="text-align: center; margin-top: 20px;">
+            이미 계정이 있으신가요? <a href="/auth/login">로그인</a>
+        </p>
+    </div>
 </body>
 </html>

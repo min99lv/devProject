@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\UsersModel;
+use App\DTOs\RegisterDTO;
+use App\DTOs\LoginDTO;
 
 class AuthService
 {
@@ -10,21 +12,15 @@ class AuthService
 
     public function __construct()
     {
-        $this->usersModel = new UsersModel();
+        // $this->usersModel = new UsersModel();
+        $this->usersModel = service('usersModel');
     }
 
-    public function register($username, $password, $password_confirm, $name)
+    public function register($registerDTO)
     {
-        // 1. 비밀번호 일치 확인
-        if($password !== $password_confirm){
-            return [
-                'success' => false,
-                'message' => '비밀번호가 일치하지 않습니다.'
-            ];
-        }
 
-        // 2. 아이디 중복 체크
-        $existingUser = $this->usersModel->where('username', $username)->first();
+        // 1. 아이디 중복 체크
+        $existingUser = $this->usersModel->where('username', $registerDTO->username)->first();
         if($existingUser){
             return [
                 'success' => false,
@@ -32,14 +28,11 @@ class AuthService
             ];
         }
 
-        // 사용자 생성 
-        $data = [
-            'username' => $username,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-            'name' => $name
-        ];
-
-        if($this->usersModel->insert($data)){
+        if($this->usersModel->insert([
+            'username' => $registerDTO->username,
+            'password' => password_hash($registerDTO->password, PASSWORD_DEFAULT),
+            'name' => $registerDTO->name
+        ])){
             return [
                 'success' => true,
                 'message' => '회원가입 성공했습니다.'
@@ -52,13 +45,14 @@ class AuthService
         }        
     }
 
-    public function authenticate($username, $password)
+    public function authenticate($LoginDTO)
     {
+
         // 1. 사용자 조회
-        $user = $this->usersModel->where('username', $username)->first();
+        $user = $this->usersModel->where('username', $LoginDTO->username)->first();
 
         // 2. 사용자 존재 확인 및 비밀번호 일치 확인
-        if($user && password_verify($password, $user->password)){
+        if($user && password_verify($LoginDTO->password, $user->password)){
             return [
                 'success' => true,
                 'user' => $user,
