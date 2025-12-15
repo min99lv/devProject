@@ -111,6 +111,7 @@ class Filters extends BaseFilters
     public array $filters = [
         'authcheck' => [
         'before' => [
+                'dashboard',
                 'dashboard/*',
             ]
         ]

@@ -20,7 +20,9 @@ class AuthController extends BaseController
     // 회원가입 페이지
     public function register()
     {
-        return render('auth/register');
+        $data = ['pageTitle' => '회원가입'];
+        // true면 footer에서 보임
+        return render('auth/register', $data, ['saveData' => true]);  
     }
 
     // 회원가입 처리
@@ -61,7 +63,9 @@ class AuthController extends BaseController
     // 로그인 페이지
     public function login()
     {
-        return render('auth/login');
+        $data = ['pageTitle' => '로그인'];
+        // saveData: true면 footer에서 보임
+        return render('auth/login', $data, ['saveData' => true]);  
     }
 
     // 로그인 처리

@@ -16,3 +16,6 @@ $routes->get('/auth/logout', 'AuthController::logout');
 
 // Dashboard 라우트
 $routes->get('/dashboard', 'DashboardController::index');
+
+// User 라우트
+$routes->get('/user/show', 'UserController::show');
