@@ -8,7 +8,7 @@ use App\DTOs\LoginDTO;
 
 class AuthController extends BaseController
 {
-    protected $authService;
+    private $authService;
 
     // __construct() 메서드는 클래스가 인스턴스화 될 때 자동으로 호출되는 메서드
     public function __construct()
@@ -92,7 +92,7 @@ class AuthController extends BaseController
             $user = $result['user'];
 
             session()->set([
-                'user_id' => $user->id,
+                'id' => $user->id,
                 'username' => $user->username,
                 'name' => $user->name,
                 'isLoggedIn' => true

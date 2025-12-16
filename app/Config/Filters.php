@@ -113,6 +113,7 @@ class Filters extends BaseFilters
         'before' => [
                 'dashboard',
                 'dashboard/*',
+                'user/*',
             ]
         ]
     ];

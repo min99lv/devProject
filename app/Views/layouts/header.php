@@ -17,7 +17,7 @@
         }
 
         header {
-            background: linear-gradient(135deg,rgb(57, 83, 199) 0%, rgb(57, 83, 199) 100%);
+            background: linear-gradient(135deg,rgb(138, 160, 255) 0%, rgb(146, 166, 255) 100%);
             color: white;
             padding: 20px;
             text-align: center;
