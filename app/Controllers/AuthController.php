@@ -89,16 +89,17 @@ class AuthController extends BaseController
 
         if ($result['success']) {
 
-            $user = $result['user'];
+            $userAuth  = $result['userAuth'];
 
             session()->set([
-                'id' => $user->id,
-                'username' => $user->username,
-                'name' => $user->name,
+                'id' => $userAuth->id,
+                'username' => $userAuth->username,
+                'name' => $userAuth->name,
+                'roles' => $userAuth->roles,
                 'isLoggedIn' => true
             ]);
 
-            return redirect()->to('/dashboard')->with('success', '로그인되었습니다.');
+            return redirect()->to('/dashboard')->with('success', '로그인 되었습니다.');
         }
 
         return redirect()->back()->with('error', $result['message']);

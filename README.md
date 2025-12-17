@@ -1,5 +1,7 @@
 <h1>데이터베이스</h1>
 <hr>
+
+<!-- 사용자 -->
 CREATE TABLE users (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -10,6 +12,7 @@ CREATE TABLE users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+<!-- 역할 -->
 CREATE TABLE roles (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
@@ -17,13 +20,14 @@ CREATE TABLE roles (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+<!-- 권한 -->
 CREATE TABLE permissions (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     code VARCHAR(100) NOT NULL UNIQUE,
     description VARCHAR(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
+<!-- 사용자 별 역할 -->
 CREATE TABLE user_roles (
     user_id BIGINT UNSIGNED NOT NULL,
     role_id INT UNSIGNED NOT NULL,
@@ -36,7 +40,7 @@ CREATE TABLE user_roles (
         ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
+<!-- 역할 별 권한 -->
 CREATE TABLE role_permissions (
     role_id INT UNSIGNED NOT NULL,
     permission_id INT UNSIGNED NOT NULL,
@@ -50,6 +54,7 @@ CREATE TABLE role_permissions (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+<!-- 게시판 -->
 CREATE TABLE boards (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,

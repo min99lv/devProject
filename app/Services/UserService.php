@@ -18,12 +18,12 @@ class UserService{
 
     public function updateUser($userDTO){
 
-        // 1. ¾÷µ¥ÀÌÆ® ÇÊµå ÁØºñ
+        // 1. ì—…ë°ì´íŠ¸ í•„ë“œ ì¤€ë¹„
         $data = [
             'name' => $userDTO->name,
         ];
 
-        // 2. ºñ¹Ğ¹øÈ£ Ã³¸®
+        // 2. ë¹„ë°€ë²ˆí˜¸ ì²˜ë¦¬
         if(!empty($userDTO->password)){
             $data['password'] = password_hash($userDTO->password, PASSWORD_DEFAULT);
         }
@@ -31,7 +31,7 @@ class UserService{
         $result = $this->usersModel->update($userDTO->id, $data);
 
         if(!$result){
-            throw new DomainException('³» Á¤º¸ ¼öÁ¤¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
+            throw new DomainException('ë‚´ ì •ë³´ ìˆ˜ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
         }
 
 
