@@ -20,9 +20,7 @@ class AuthController extends BaseController
     // 회원가입 페이지
     public function register()
     {
-        $data = ['pageTitle' => '회원가입'];
-        // true면 footer에서 보임
-        return render('auth/register', $data, ['saveData' => true]);  
+        return view('auth/register', ['pageTitle' => '회원가입']);
     }
 
     // 회원가입 처리
@@ -63,9 +61,7 @@ class AuthController extends BaseController
     // 로그인 페이지
     public function login()
     {
-        $data = ['pageTitle' => '로그인'];
-        // saveData: true면 footer에서 보임
-        return render('auth/login', $data, ['saveData' => true]);  
+        return view('auth/login', ['pageTitle' => '로그인']);
     }
 
     // 로그인 처리
@@ -90,12 +86,24 @@ class AuthController extends BaseController
         if ($result['success']) {
 
             $userAuth  = $result['userAuth'];
+            
+            // 사용자 역할 확인 (admin이면 'admin', 아니면 'user')
+            $userRole = 'user'; // 기본값
+            if (!empty($userAuth->roles)) {
+                foreach ($userAuth->roles as $role) {
+                    if (isset($role['name']) && $role['name'] === 'admin') {
+                        $userRole = 'admin';
+                        break;
+                    }
+                }
+            }
 
             session()->set([
                 'id' => $userAuth->id,
                 'username' => $userAuth->username,
                 'name' => $userAuth->name,
                 'roles' => $userAuth->roles,
+                'role' => $userRole,  // 🔑 현재 사용자의 역할
                 'isLoggedIn' => true
             ]);
 

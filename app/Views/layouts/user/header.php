@@ -70,13 +70,15 @@
         footer p {
             margin: 5px 0;
         }
-        h1 a{
+
+        h1 a {
             color: white;
             text-decoration: none;
             font-size: 32px;
             font-weight: bold;
             transition: color 0.3s;
         }
+
         h1 a:hover {
             color: #555;
         }

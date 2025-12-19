@@ -6,7 +6,7 @@ class DashboardController extends BaseController
 {
     public function index()
     {
-        return render('dashboard/index');
+        return view('dashboard/index');
     }
 }
 ?>

@@ -16,9 +16,12 @@ class UserController extends BaseController{
     // 내 정보 보기
     public function show(){
         $id = session()->get('id');
-        $user = $this->userService->getUserById(session()->get('id'));
-
-        return render('user/profile', ['user' => $user]);
+        if(!$id){
+            return redirect()->to('/auth/login')->with('error', '로그인이 필요합니다.');
+        }
+        
+        $user = $this->userService->getUserById($id);
+        return view('user/profile', ['user' => $user]);
     }
 
     // 내 정보 수정

@@ -6,6 +6,7 @@ use CodeIgniter\Config\BaseService;
 use App\Services\AuthService;
 use App\Models\UsersModel;
 use App\Services\UserService;
+use App\Services\AdminService;
 
 /**
  * Services Configuration file.
@@ -33,6 +34,7 @@ class Services extends BaseService
      * }
      */
     
+    // AuthService
     public static function authService($getShared = true){
         if ($getShared){
             // 싱글톤 패턴 : 같은 객체를 여러 번 요청해도 한 번만 생성하고 재사용하는 패턴
@@ -41,6 +43,8 @@ class Services extends BaseService
         
         return new AuthService();
     }
+
+    // UsersModel
     public static function usersModel($getShared = true){
         if ($getShared){
             // 싱글톤 패턴 : 같은 객체를 여러 번 요청해도 한 번만 생성하고 재사용하는 패턴
@@ -49,10 +53,26 @@ class Services extends BaseService
         
         return new UsersModel();
     }
+
+    // UserService
     public static function userService($getShared = true){
         if($getShared){
             return static::getSharedInstance('userService');
         }
         return new UserService();
     }
+
+    // AdminService
+    public static function adminService($getShared = true){
+        if($getShared){
+            return static::getSharedInstance('adminService');
+        }
+        return new AdminService();
+    }
+
+
+
+
+
+
 }

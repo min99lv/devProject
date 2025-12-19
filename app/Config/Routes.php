@@ -20,3 +20,7 @@ $routes->get('/dashboard', 'DashboardController::index');
 // User 라우트
 $routes->get('/user/show', 'UserController::show');
 $routes->post('/user/update', 'UserController::update');
+
+// Admin 라우트
+$routes->get('/admin/users/list', 'AdminController::usersList');
+

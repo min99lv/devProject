@@ -79,14 +79,14 @@ class AuthService
 
         // 2. 사용자 존재 확인 및 비밀번호 일치 확인
         if($user && password_verify($LoginDTO->password, $user->password)){
+            // 사용자의 역할 조회 (모든 정보)
             $roles = $this->usersModel->getUserRoles($user->id);
-            $roleNames = array_column($roles, 'id');
 
             $userAuthDTO = new UserAuthDTO(
                 id: $user->id,
                 username: $user->username,
                 name: $user->name,
-                roles: $roleNames
+                roles: $roles  // 전체 역할 정보 (id, name, description)
             );
 
             return [

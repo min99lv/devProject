@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?= $this->extend('layouts/user/layout') ?>
+
+<?= $this->section('content') ?>
+    <h2>회원가입</h2>
+    
     <?php if (session()->getFlashdata('error')): ?>
         <div style="color: red; background-color: #ffebee; padding: 10px; margin-bottom: 20px; border-radius: 3px;">
             <?= session()->getFlashdata('error') ?>
         </div>
     <?php endif; ?>
 
-    <div class="container">
-        <h2>회원가입</h2>
-        <?= form_open('auth/storeRegister', ['style' => 'max-width: 500px;']); ?>
+    <?= form_open('auth/storeRegister', ['style' => 'max-width: 500px;']); ?>
         <?= csrf_field() ?>
     
         <div style="margin-bottom: 15px;">
@@ -40,11 +35,9 @@
         <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer;">
             회원가입
         </button>
-        <?= form_close(); ?>
+    <?= form_close(); ?>
 
-        <p style="text-align: center; margin-top: 20px;">
-            이미 계정이 있으신가요? <a href="/auth/login">로그인</a>
-        </p>
-    </div>
-</body>
-</html>
+    <p style="text-align: center; margin-top: 20px;">
+        이미 계정이 있으신가요? <a href="/auth/login">로그인</a>
+    </p>
+<?= $this->endSection() ?>

@@ -1,24 +1,23 @@
 <?php
 
-if (!function_exists('render')) {
-    // Layout을 포함하여 뷰를 렌더링
-    // 뷰 파일 이름, 뷰에 전달하는 데이터, 옵션
-    // 옵션 : cache, saveData, strictVars
-    // cache: 화면을 일정 시간 동안 저장해서 다시 만들지 않기
-    // saveData: view에 넘긴 데이터를 다음 view에서도 유지할지
-    // strictVars: 없는 변수를 사용하면 에러를 낼지
-    function render(string $name, array $data = [], array $options = [])
-    {
-        return view(
-            // 메인 레이아웃 파일
-            'layouts/layout',
-            [
-                // 구체적인 뷰 파일
-                'content' => view($name, $data, $options),
-            ],
-            $options
-        );
-    }
-}
-?>
+/**
+ * renderSection 기반 구조 도입에 따라 render_helper는 더 이상 필요하지 않습니다.
+ * 
+ * 변경 이유:
+ * - render()는 단일 슬롯($content) 제약이 있음
+ * - renderSection은 다중 섹션 지원으로 더 강력한 레이아웃 시스템 제공
+ * - View 파일이 직접 layout을 선택하므로 권한별 처리 간단
+ * 
+ * 사용법:
+ * 
+ * // View 파일에서
+ * <?= $this->extend('layouts/user/layout') ?>
+ * <?= $this->section('content') ?>
+ *   <!-- 콘텐츠 -->
+ * <?= $this->endSection() ?>
+ * 
+ * // Controller에서
+ * return view('your/page', $data);
+ */
 
+?>

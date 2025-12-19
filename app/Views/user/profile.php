@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 정보</title>
-</head>
-<body>
+<?php
+// 사용자의 권한에 따라 layout 결정
+$role = session()->get('role') ?? 'user';
+$layout = match($role) {
+    'admin' => 'layouts/admin/layout',
+    default => 'layouts/user/layout',
+};
+?>
 
+<?= $this->extend($layout) ?>
+
+<?= $this->section('content') ?>
     <?php if (session()->getFlashdata('error')): ?>
-            <div style="color: red; background-color: #ffebee; padding: 10px; margin-bottom: 20px; border-radius: 3px;">
-                <?= session()->getFlashdata('error') ?>
-            </div>
+        <div style="color: red; background-color: #ffebee; padding: 10px; margin-bottom: 20px; border-radius: 3px;">
+            <?= session()->getFlashdata('error') ?>
+        </div>
     <?php endif; ?>
+    
     <?php if (session()->getFlashdata('success')): ?>
         <div style="color: green; background-color: #e8f5e9; padding: 10px; margin-bottom: 20px; border-radius: 3px;">
             <?= session()->getFlashdata('success') ?>
         </div>
     <?php endif; ?>
+    
     <h2>내 정보</h2>
     <?= form_open('/user/update') ?>
     <table>
@@ -43,5 +48,4 @@
         </tr>
     </table>
     <?= form_close() ?>
-</body>
-</html>
+<?= $this->endSection() ?>
