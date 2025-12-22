@@ -52,7 +52,6 @@ $layout = match($role) {
         border-collapse: collapse;
         background-color: white;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        border-radius: 8px;
         overflow: hidden;
     }
     
@@ -155,8 +154,7 @@ $layout = match($role) {
                         <td><?= $user->username ?></td>
                         <td><?= date('Y-m-d', strtotime($user->created_at)) ?></td>
                         <td>
-                            <a href="/admin/users/<?= $user->id ?>" class="action-btn view-btn">보기</a>
-                            <a href="/admin/users/<?= $user->id ?>/edit" class="action-btn edit-btn">수정</a>
+                            <a href="/user/show/<?= $user->id ?>" class="action-btn view-btn">보기</a>
                             <button class="action-btn delete-btn">삭제</button>
                         </td>
                     </tr>

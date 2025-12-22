@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'DashboardController::index');
 
 // Auth 라우트
 $routes->get('/auth/register', 'AuthController::register');
@@ -19,8 +19,13 @@ $routes->get('/dashboard', 'DashboardController::index');
 
 // User 라우트
 $routes->get('/user/show', 'UserController::show');
+$routes->get('/user/show/(:num)', 'UserController::show/$1');
 $routes->post('/user/update', 'UserController::update');
+$routes->get('/user/list', 'UserController::list');
 
-// Admin 라우트
-$routes->get('/admin/users/list', 'AdminController::usersList');
 
+
+
+
+
+?>

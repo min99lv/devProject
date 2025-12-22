@@ -18,7 +18,7 @@ class UsersModel extends Model
     // 타임스탬프 자동 처리
     protected $useTimestamps = true;
 
-    // 사용자의 역할 조회회
+    // 사용자의 역할 조회
     public function getUserRoles($userId){
         return $this->db->table('user_roles')
             ->select('roles.id,roles.name,roles.description')

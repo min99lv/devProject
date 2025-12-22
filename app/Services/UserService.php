@@ -37,6 +37,11 @@ class UserService{
 
         return $result;
     }
+
+    // 회원 목록 조회
+    public function getUsersList(){
+        return $this->usersModel->findAll();
+    }
 }
 
 ?>

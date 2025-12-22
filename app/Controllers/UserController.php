@@ -14,8 +14,12 @@ class UserController extends BaseController{
     }
 
     // 내 정보 보기
-    public function show(){
-        $id = session()->get('id');
+    public function show($id = null){
+
+        if($id === null){
+            $id = session()->get('id');
+        }
+
         if(!$id){
             return redirect()->to('/auth/login')->with('error', '로그인이 필요합니다.');
         }
@@ -58,7 +62,14 @@ class UserController extends BaseController{
 
         return redirect()->to('/user/show')->with('success', '내 정보가 수정되었습니다.');
     }
+
+    // 회원 목록 조회
+    public function list(){
+        $users = $this->userService->getUsersList();
+    
+        return view('user/list', ['users' => $users]);
+    }
+
+
 }
-
-
 ?>

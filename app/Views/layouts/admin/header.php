@@ -118,7 +118,7 @@
 
     <nav>
         <div class="nav-left">
-            <a href="/admin/users/list" class="admin-btn">회원관리</a>
+            <a href="/user/list" class="admin-btn">회원관리</a>
         </div>
         <div class="nav-right">
             <a href="/user/show">내정보</a>

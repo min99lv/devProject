@@ -21,13 +21,12 @@ $layout = match($role) {
             <?= session()->getFlashdata('success') ?>
         </div>
     <?php endif; ?>
-    
     <h2>내 정보</h2>
     <?= form_open('/user/update') ?>
     <table>
         <tr>
             <td>아이디</td>
-            <td><?= session()->get('username') ?></td>
+            <td><?= $user->username ?></td>
         </tr>
         <tr>
             <td>이름</td>

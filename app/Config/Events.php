@@ -59,4 +59,18 @@ Events::on('pre_system', static function (): void {
 //     helper('render');
 // });
 
+/*
+이벤트 포인트
+- pre_system : 시스템 실행 초기단계에 발생 기초 파일들은 로드 되었지만 라우팅이나 컨트롤러가 실행되기 전
+- post_controller_constructor : 컨트롤러가 인스턴스화 된 직후, 메서드가 호출되기 직전에 발생
+- post_system : 최종 응답이 브라우저에 전송된 후 발생 실행로그 남길때 사용
+- email : 이메일 전송이 성공했을때 발생 
+- DBQuery : 데이터베이스 쿼리가 실행될때마다 발생 쿼리 성능 모니터링이나 로그를 남길때 사용
+- migrate : 마이그레이션이 성공적으로 완료된 후 
 
+이벤트 설정 방법
+- 이벤트 등록(app/Config/Events.php) : Events::on('이벤트이름', '함수이름');
+*/
+
+
+?>
