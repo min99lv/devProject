@@ -52,5 +52,6 @@ class UsersModel extends Model
             ->get()
             ->getResultArray();
     }
+
 }
 ?>

@@ -1,10 +1,7 @@
 <?php
-// 사용자의 권한에 따라 layout 결정
-$role = session()->get('role') ?? 'user';
-$layout = match($role) {
-    'admin' => 'layouts/admin/layout',
-    default => 'layouts/user/layout',
-};
+$layout = session()->get('isAdmin')
+    ? 'layouts/admin/layout'
+    : 'layouts/user/layout';
 ?>
 
 <?= $this->extend($layout) ?>

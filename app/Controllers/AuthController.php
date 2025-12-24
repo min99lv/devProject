@@ -86,25 +86,14 @@ class AuthController extends BaseController
         if ($result['success']) {
 
             $userAuth  = $result['userAuth'];
-            
-            // 사용자 역할 확인 (admin이면 'admin', 아니면 'user')
-            $userRole = 'user'; // 기본값
-            if (!empty($userAuth->roles)) {
-                foreach ($userAuth->roles as $role) {
-                    if (isset($role['name']) && $role['name'] === 'admin') {
-                        $userRole = 'admin';
-                        break;
-                    }
-                }
-            }
 
             session()->set([
+                'isLoggedIn' => true,
                 'id' => $userAuth->id,
                 'username' => $userAuth->username,
                 'name' => $userAuth->name,
                 'roles' => $userAuth->roles,
-                'role' => $userRole,  // 🔑 현재 사용자의 역할
-                'isLoggedIn' => true
+                'isAdmin' => in_array('admin', array_column($userAuth->roles, 'name'))
             ]);
 
             return redirect()->to('/dashboard')->with('success', '로그인 되었습니다.');
